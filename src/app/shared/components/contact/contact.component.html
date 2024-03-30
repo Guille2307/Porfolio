@@ -1,0 +1,68 @@
+<form
+  class="formgrid grid mt-4 mr-2 flex flex-direction-column justify-content-center align-content-center"
+  [formGroup]="myForm"
+  (ngSubmit)="sendForm()"
+>
+  <div
+    class="bg-red-700 text-center col-12 mb-3 text-white"
+    *ngIf="myForm.invalid && myForm.dirty"
+  >
+    <p>Todos los campos son obligatorios</p>
+  </div>
+  <div class="col-12 md:col-6 col-offset-1 my-4">
+    <h2 class="text-gray-700">Contacto</h2>
+  </div>
+
+  <div class="field col-12 md:col-6 col-offset-1">
+    <label for="name">Nombre</label>
+    <input
+      id="name"
+      type="text"
+      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      formControlName="name"
+    />
+  </div>
+  <div class="field col-12 md:col-6 col-offset-1">
+    <label for="lastname">Apellido</label>
+    <input
+      formControlName="lastName"
+      id="lastname"
+      type="text"
+      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+    />
+  </div>
+  <div class="field col-12 md:col-6 col-offset-1">
+    <label for="lastname">Asunto</label>
+    <input
+      formControlName="topic"
+      id="lastname"
+      type="text"
+      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+    />
+  </div>
+
+  <div class="field col-12 md:col-6 col-offset-1">
+    <label for="email">Email</label>
+    <input
+      formControlName="email"
+      id="email"
+      type="email"
+      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+    />
+  </div>
+
+  <div class="field col-12 md:col-6 col-offset-1">
+    <label for="message">Mensaje</label>
+    <textarea
+      formControlName="message"
+      id="message"
+      type="text"
+      rows="4"
+      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+    ></textarea>
+  </div>
+
+  <div class="col-12 md:col-6 col-offset-1 my-5">
+    <p-button type="submit">Enviar</p-button>
+  </div>
+</form>

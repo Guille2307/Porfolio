@@ -1,0 +1,25 @@
+<div class="grid">
+  <div class="col-12">
+    <h1 class="text-center mt-8 text-6xl text-gray-700">Proyectos</h1>
+  </div>
+</div>
+
+<section class="my-8">
+  <div class="grid">
+    <div class="col-12 md:col-6 grow" *ngFor="let proyect of proyects">
+      <p-card [header]="proyect.title" [subheader]="proyect.subtitle">
+        <ng-template pTemplate="header">
+          <img [alt]="proyect.title" [src]="proyect.img" />
+        </ng-template>
+        <p>
+          {{ proyect.description }}
+        </p>
+        <ng-template pTemplate="footer">
+          <a [href]="proyect.url" target="_blank">
+            <p-button label="Ver más" icon="pi pi-desktop"></p-button>
+          </a>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</section>

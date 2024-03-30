@@ -1,0 +1,13 @@
+img {
+  width: 600px;
+
+  @media screen and (max-width: 900px) {
+    width: 500px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 400px;
+  }
+  @media (max-width: 490px) {
+    width: 290px;
+  }
+}
