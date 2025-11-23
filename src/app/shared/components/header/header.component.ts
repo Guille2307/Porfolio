@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
 
   public openFile(): void {
     this.filesService
-      .getFile('./assets/Guillermo_CV.pdf')
+      .getFile('./assets/Guillermo_Pinate_Cv.pdf')
       .then((response) => response.blob())
       .then((pdf) => {
         window.open(URL.createObjectURL(pdf), '_blank');
