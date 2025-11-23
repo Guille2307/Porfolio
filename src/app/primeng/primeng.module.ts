@@ -5,6 +5,7 @@ import { ImageModule } from 'primeng/image';
 import { PanelModule } from 'primeng/panel';
 import { CardModule } from 'primeng/card';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @NgModule({
   exports: [
     ButtonModule,
@@ -13,6 +14,7 @@ import { ScrollTopModule } from 'primeng/scrolltop';
     PanelModule,
     CardModule,
     ScrollTopModule,
+    ProgressSpinnerModule,
   ],
 })
 export class PrimengModule {}

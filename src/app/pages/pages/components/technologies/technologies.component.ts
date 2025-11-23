@@ -133,4 +133,8 @@ export class TechnologiesComponent {
       alt: 'jira',
     },
   ];
+
+  isExternalUrl(url: string): boolean {
+    return url.startsWith('http://') || url.startsWith('https://');
+  }
 }
