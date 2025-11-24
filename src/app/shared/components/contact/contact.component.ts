@@ -21,11 +21,15 @@ export class ContactComponent {
   public isFormValid(): boolean {
     return this.myForm.valid;
   }
+
   sendForm(data: FormGroup = this.myForm) {
     if (this.isFormValid()) {
       this.emailService.emailPost(data);
+      Swal.fire('Enviado', 'Su mensaje ha sido enviado Correctamente', 'success');
+      this.myForm.reset();
+    } else {
+      Swal.fire('Error', 'Por favor completa todos los campos requeridos', 'error');
+      this.myForm.markAllAsTouched();
     }
-    Swal.fire('Enviado', 'Su mensaje ha sido enviado Correctamente', 'success');
-    this.myForm.reset();
   }
 }
