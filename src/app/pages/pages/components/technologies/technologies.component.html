@@ -8,8 +8,8 @@
 <section>
   <div class="grid flex justify-content-center align-items-center mt-4">
     <div *ngFor="let url of urls" class="col-12 md:col-6 lg:col-3 text-center text-gray-700 mt-4 p-4 grow">
-      <img [src]="url.path" [alt]="url.alt" [width]="isExternalUrl(url.path) ? 80 : 120"
-        [height]="isExternalUrl(url.path) ? 80 : 120" style="object-fit: contain;" />
+      <img [src]="url.path" [alt]="url.alt" [width]="isExternalUrl(url.path) ? 60 : 120"
+        [height]="isExternalUrl(url.path) ? 60 : 120" style="object-fit: contain;" />
     </div>
   </div>
 </section>
