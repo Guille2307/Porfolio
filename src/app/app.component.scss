@@ -11,6 +11,10 @@
     z-index: 9999;
 }
 
+::ng-deep .custom-spinner .p-progress-spinner-circle {
+    stroke: #7254f3 !important;
+}
+
 .app-content {
     opacity: 0;
     transition: opacity 0.4s ease-in;
