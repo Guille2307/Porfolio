@@ -1,6 +1,6 @@
 <div class="grid">
   <div class="col-12">
-    <h1 class="text-center mt-8 text-6xl text-gray-700">Proyectos</h1>
+    <h1 class="text-center mt-8 text-6xl text-gray-700">{{ 'projects.title' | translate }}</h1>
   </div>
 </div>
 
@@ -16,7 +16,7 @@
         </p>
         <ng-template pTemplate="footer">
           <a [href]="proyect.url" target="_blank">
-            <p-button label="Ver más" icon="pi pi-desktop"></p-button>
+            <p-button [label]="'projects.viewMore' | translate" icon="pi pi-desktop"></p-button>
           </a>
         </ng-template>
       </p-card>

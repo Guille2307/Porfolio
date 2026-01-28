@@ -12,6 +12,7 @@ import { TechnologiesComponent } from './pages/components/technologies/technolog
 import { ProyectsComponent } from './pages/components/proyects/proyects.component';
 import { CredentialsComponent } from './pages/components/credentials/credentials.component';
 import { SharedModule } from '../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,12 @@ import { SharedModule } from '../shared/shared.module';
     ProyectsComponent,
     CredentialsComponent,
   ],
-  imports: [CommonModule, PagesRoutingModule, PrimengModule, SharedModule],
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    PrimengModule,
+    SharedModule,
+    TranslateModule,
+  ],
 })
 export class PagesModule {}

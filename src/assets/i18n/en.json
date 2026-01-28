@@ -1,0 +1,132 @@
+{
+  "nav": {
+    "home": "Home",
+    "contact": "Contact",
+    "language": "Language",
+    "cv": "Resume",
+    "spanish": "Español",
+    "english": "English"
+  },
+  "home": {
+    "title": "Full stack <span class='text-primary'>MEAN</span> developer.",
+    "subtitle": "\"A programmer who writes clean code perfectly understands the problem before writing the code\".",
+    "imgAlt": "Guillermo's Image"
+  },
+  "sectionTwo": {
+    "description": "I'm Guillermo Piñate, full stack developer (Angular/Node.js) with a solid creative foundation thanks to my previous experience in design and photography. Technology is my driving force, and I like to build functional, clean and visually polished products."
+  },
+  "experience": {
+    "title": "Experience",
+    "responsibilities": "My responsibilities are:",
+    "responsibilitiesWere": "My responsibilities below:",
+    "job1": {
+      "title": "Frontend Developer",
+      "period": "03-25-2024 / Present",
+      "description": "As a Frontend Developer I work on a project for Iberdrola regarding the creation of service orders. Angular version 16, Angular Material.",
+      "tasks": [
+        "Screen implementation.",
+        "Creation of reusable components.",
+        "Lazy loading and route protection.",
+        "Unit tests.",
+        "Form creation."
+      ]
+    },
+    "job2": {
+      "title": "Frontend Developer",
+      "period": "07-01-2023 to 03-23-2024",
+      "description": "As a Frontend Developer I work on a construction materials and tools management project. As a development framework I use Angular Version 15, Angular Material, Prime NG, PrimeFLEX, REDUX-NGRX.",
+      "tasks": [
+        "Implementation of product and user CRUD.",
+        "User role management.",
+        "Lazy loading and route protection.",
+        "Unit tests.",
+        "Form creation.",
+        "Implementation of the REDUX-NGRX pattern."
+      ]
+    },
+    "job3": {
+      "title": "Full stack Developer",
+      "period": "09-01-2022 to 06-30-2023",
+      "description": "As a Frontend Developer I worked on applications and apps for conferences including events such as book fairs and The Auto Show. The tools I used were Angular version 8 to 14, Ionic version 6, Angular Material, Prime Ng, Bootstrap, ASANA for issue management.",
+      "tasks": [
+        "Change fetch requests based on promises to requests based on reactive programming Observables Rxjs",
+        "Consumed REST services, JWT, role management, chats, file upload.",
+        "Implementation of i18n for different languages.",
+        "Unit tests with Karma - Jasmine.",
+        "Maintenance to Legacy Ionic components version 5 to version 6.",
+        "Maintenance of existing functionalities and development of new functionalities.",
+        "Creation of the company landing page."
+      ]
+    },
+    "job4": {
+      "title": "Frontend Developer",
+      "period": "05-01-2019 to 08-30-2022",
+      "tasks": [
+        "Design and implementation of user interfaces.",
+        "Implementation of product and user CRUD.",
+        "User role management.",
+        "Lazy loading and route protection.",
+        "Unit tests.",
+        "Form creation."
+      ]
+    }
+  },
+  "technologies": {
+    "title": "Technologies"
+  },
+  "projects": {
+    "title": "Projects",
+    "viewMore": "View more",
+    "list": [
+      {
+        "title": "NetTask",
+        "subtitle": "Angular, Node",
+        "description": "It is a web application to organize tasks, you can assign a task to a user, change the status and add tags. It consumes REST services, Node, Express, JWT, CRUD, work with interceptors, Pipes, reactive forms."
+      },
+      {
+        "title": "Woutick Show",
+        "subtitle": "Angular, Ionic",
+        "description": "It is a web or an app for concert halls, cultural agendas, conferences or communities. It is developed in Angular Ionic, consumes REST services and i18n for English, Spanish and Portuguese languages"
+      },
+      {
+        "title": "Woutick Landing Page",
+        "subtitle": "Angular, Ionic",
+        "description": "This project serves as a showcase to learn about all the products offered by the company. It is developed in Angular Ionic, consumes REST services and i18n for English, Spanish and Portuguese languages"
+      },
+      {
+        "title": "Heroes of the storm",
+        "subtitle": "Angular, Express, Node, Mongo",
+        "description": "Heroes Of the Storm was one of the projects I developed as part of my training in the web development Boot camp, The css is totally flat without predesigned components, JWT, character CRUD"
+      },
+      {
+        "title": "AdminPro",
+        "subtitle": "Angular, Express, Node, Mongo",
+        "description": "As part of my self-training, and in pursuit of constant improvement, I took the Advanced Angular course, AdminPro is a web that I developed throughout the course, authentication, CRUD of doctors and hospitals"
+      },
+      {
+        "title": "Pipes App",
+        "subtitle": "Angular",
+        "description": "Pipes app is a project that I developed in order to strengthen knowledge about Pipes in Angular. Angular Material concepts are also applied for a more interactive design"
+      }
+    ]
+  },
+  "credentials": {
+    "title": "Education"
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Name",
+    "lastName": "Last Name",
+    "topic": "Subject",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "All fields are required"
+  },
+  "footer": {
+    "rights": "All rights reserved Guillermo Piñate.",
+    "contactAndNetworks": "Contacts and networks."
+  }
+}

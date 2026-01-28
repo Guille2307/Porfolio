@@ -1,0 +1,132 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "contact": "Contacto",
+    "language": "Idioma",
+    "cv": "Currículum",
+    "spanish": "Español",
+    "english": "English"
+  },
+  "home": {
+    "title": "Full stack <span class='text-primary'>MEAN</span> developer.",
+    "subtitle": "\"Un programador que escriba un código limpio, entiende perfectamente el problema antes de escribir el código\".",
+    "imgAlt": "Imagen Guillermo"
+  },
+  "sectionTwo": {
+    "description": "Soy Guillermo Piñate, full stack developer (Angular/Node.js) con una sólida base creativa gracias a mi experiencia previa en diseño y fotografía. La tecnología es mi motor, y me gusta construir productos funcionales, limpios y visualmente cuidados."
+  },
+  "experience": {
+    "title": "Experiencia",
+    "responsibilities": "Mis responsabilidades son:",
+    "responsibilitiesWere": "Mis responsabilidades a continuación:",
+    "job1": {
+      "title": "Frontend Developer",
+      "period": "25-03-2024 / Actual",
+      "description": "Como Frontend Developer trabajo en un proyecto para Iberdrola referente a la creación de ordenes de servicios. Versión 16 de Angular, Angular Material.",
+      "tasks": [
+        "Implementación de pantallas.",
+        "Creación de componetes reutilizables.",
+        "Lazy loading y protección de rutas.",
+        "Test unitarios.",
+        "Creación de formularios."
+      ]
+    },
+    "job2": {
+      "title": "Frontend Developer",
+      "period": "01-07-2023 al 23-03-2024",
+      "description": "Como Frontend Developer trabajo en un proyecto de gestión de materiales de construcción y herramientas. Como marco de desarrollo uso Angular Versión 15, Angular Material, Prime NG, PrimeFLEX, REDUX-NGRX.",
+      "tasks": [
+        "Implementación de CRUD de productos y usuarios.",
+        "Administración de roles de usuarios.",
+        "Lazy loading y protección de rutas.",
+        "Test unitarios.",
+        "Creación de formularios.",
+        "Implementación del patrón REDUX-NGRX."
+      ]
+    },
+    "job3": {
+      "title": "Full stack Developer",
+      "period": "01-09-2022 al 30-06-2023",
+      "description": "Como Frontend Developer trabajé en aplicaciones y apps destinadas a congresos entre ellos eventos como ferias del libro y El salón automotor. Las herramientas que utilicé fueron Angular versión 8 a la 14, Ionic versión 6, Angular Material, Prime Ng, Bootstrap, ASANA para gestión de incidencias.",
+      "tasks": [
+        "Cambiar peticiones fetch en base a promesas a peticiones en base a programación reactiva Observables Rxjs",
+        "Consumí servicios REST, JWT, administración de roles, chats, subida de archivos.",
+        "Implementación de i18n para los diferentes idiomas.",
+        "Test unitarios con Karma - Jasmine.",
+        "Mantenimiento a componentes Legacy de Ionic versión 5 a versión 6.",
+        "Mantenimiento de las funcionalidades existentes y desarrollo de nuevas funcionalidades.",
+        "Creación del landing page de la empresa."
+      ]
+    },
+    "job4": {
+      "title": "Frontend Developer",
+      "period": "01-05-2019 al 30-08-2022",
+      "tasks": [
+        "Diseño e implementación de interfaces de usuarios.",
+        "Implementación de CRUD de productos y usuarios.",
+        "Administración de roles de usuarios.",
+        "Lazy loading y protección de rutas.",
+        "Test unitarios.",
+        "Creación de formularios."
+      ]
+    }
+  },
+  "technologies": {
+    "title": "Tecnologías"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "viewMore": "Ver más",
+    "list": [
+      {
+        "title": "NetTask",
+        "subtitle": "Angular, Node",
+        "description": "Es una web para organizar tareas, puedes asignarle una tarea a un usuario, cambiar el status y añadir tags. consume servicios REST, Node, Express, JWT, CRUD, trabajos con interceptores, Pipes, formularios reactivos."
+      },
+      {
+        "title": "Woutick Show",
+        "subtitle": "Angular, Ionic",
+        "description": "Es una web o una app destinada a sala de conciertos, agenda cultural, congresos o comunidades. Está desarrollada en Angular Ionic, consume servicios REST y i18n para los idiomas Inglés, Español y Portugués"
+      },
+      {
+        "title": "Woutick Landing Page",
+        "subtitle": "Angular, Ionic",
+        "description": "Este Proyecto sirve de vitrina para conocer todos los productos que ofrece la empresa. Está desarrollada en Angular Ionic, consume servicios REST y i18n para los idiomas Inglés, Español y Portugués"
+      },
+      {
+        "title": "Heroes of the storm",
+        "subtitle": "Angular, Express, Node, Mongo",
+        "description": "Heroes Of the Storm fue uno de los proyectos que desarrollé como parte de mi formación en el Boot camp de desarrollo web, El css es totalmente plano sin componentes prediseñados, JWT, CRUD de personajes"
+      },
+      {
+        "title": "AdminPro",
+        "subtitle": "Angular, Express, Node, Mongo",
+        "description": "Como parte de mi auto formación, y procura de mejora constante, realicé el curso de Angular Avanzado, AdminPro es una web que desarrollé a lo largo del curso, autenticación, CRUD de médicos y hospitales"
+      },
+      {
+        "title": "Pipes App",
+        "subtitle": "Angular",
+        "description": "Pipes app es un proyecto que desarrollé con el fin de afianzar conocimientos sobre los Pipes en Angular. También se aplican conceptos de Angular Material para un diseño más interactivo"
+      }
+    ]
+  },
+  "credentials": {
+    "title": "Formación"
+  },
+  "contact": {
+    "title": "Contacto",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "topic": "Asunto",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "sending": "Enviando...",
+    "success": "¡Mensaje enviado con éxito!",
+    "error": "Todos los campos son obligatorios"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados Guillermo Piñate.",
+    "contactAndNetworks": "Contactos y redes."
+  }
+}
