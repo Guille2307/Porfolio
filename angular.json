@@ -25,10 +25,9 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.scss",
-              "node_modules/primeng/resources/themes/soho-light/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeflex/primeflex.css"
+  "node_modules/primeicons/primeicons.css",
+  "node_modules/primeflex/primeflex.css",
+  "src/styles.scss"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
@@ -96,5 +95,31 @@
   },
   "cli": {
     "analytics": "dcee4e94-fc92-4fc6-a589-b41a11fc7bd8"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { PathTechnologies } from '../../interfaces/path-technologies.interface';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'technologies',
   templateUrl: './technologies.component.html',
   styleUrls: ['./technologies.component.scss'],
+  imports: [TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TechnologiesComponent {
-  public urls: PathTechnologies[] = [
+  public readonly urls: PathTechnologies[] = [
     {
       path: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg',
       alt: 'Mongo Image',

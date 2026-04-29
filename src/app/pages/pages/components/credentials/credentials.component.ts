@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { PathTechnologies } from '../../interfaces/path-technologies.interface';
+import { Image } from 'primeng/image';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'credentials',
   templateUrl: './credentials.component.html',
   styleUrls: ['./credentials.component.scss'],
+  imports: [Image, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CredentialsComponent {
-  public credentials: PathTechnologies[] = [
+  public readonly credentials: PathTechnologies[] = [
     { path: './assets/cetificados/upgrade.jpg', alt: 'upgrade' },
     {
       path: './assets/cetificados/UC-f301729c-4820-4638-9f94-26a93204fda7.jpg',

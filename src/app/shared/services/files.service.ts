@@ -4,9 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FilesService {
-  constructor() {}
-
-  getFile(urlFile: string): Promise<any> {
+  getFile(urlFile: string): Promise<Response> {
     return fetch(urlFile, {
       method: 'GET',
     });

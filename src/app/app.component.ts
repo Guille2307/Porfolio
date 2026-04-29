@@ -1,44 +1,74 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { PrimeNGConfig } from 'primeng/api';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { take } from 'rxjs';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ScrollTopModule } from 'primeng/scrolltop';
+
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+    ProgressSpinnerModule,
+    ScrollTopModule,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterViewInit {
-  title = 'porfolio';
-  imagesLoaded = false;
-
-  constructor(
-    private primengConfig: PrimeNGConfig,
-    private router: Router
-  ) {}
-
-  ngOnInit() {
-    this.primengConfig.ripple = true;
-  }
+  readonly imagesLoaded = signal(false);
+  private imageCheckScheduled = false;
+  private readonly router = inject(Router);
 
   ngAfterViewInit() {
-    // Esperar a que se complete la navegación inicial
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        take(1),
+      )
       .subscribe(() => {
-        // Pequeño delay para asegurar que el DOM está renderizado
-        setTimeout(() => {
-          this.waitForImages();
-        }, 100);
+        this.scheduleImageCheck();
       });
+
+    // Si la navegación inicial ya terminó antes de suscribirnos, el loader
+    // no debe quedarse bloqueando la aplicación.
+    setTimeout(() => {
+      this.scheduleImageCheck();
+    }, 500);
+  }
+
+  private scheduleImageCheck() {
+    if (this.imageCheckScheduled || this.imagesLoaded()) {
+      return;
+    }
+
+    this.imageCheckScheduled = true;
+
+    setTimeout(() => {
+      this.waitForImages();
+    }, 100);
   }
 
   private waitForImages() {
-    const images = Array.from(document.querySelectorAll('img')) as HTMLImageElement[];
+    const images = Array.from(
+      document.querySelectorAll('img'),
+    ) as HTMLImageElement[];
 
     if (images.length === 0) {
       // Si no hay imágenes, mostrar contenido inmediatamente
-      this.imagesLoaded = true;
+      this.showContent();
       return;
     }
 
@@ -48,11 +78,11 @@ export class AppComponent implements AfterViewInit {
     const checkAllLoaded = () => {
       loadedCount++;
       if (loadedCount >= totalImages) {
-        this.imagesLoaded = true;
+        this.showContent();
       }
     };
 
-    images.forEach(img => {
+    images.forEach((img) => {
       if (img.complete) {
         checkAllLoaded();
       } else {
@@ -61,11 +91,18 @@ export class AppComponent implements AfterViewInit {
       }
     });
 
-    // Timeout de seguridad: mostrar contenido después de 3 segundos aunque no hayan cargado todas
     setTimeout(() => {
-      if (!this.imagesLoaded) {
-        this.imagesLoaded = true;
+      if (!this.imagesLoaded()) {
+        this.showContent();
       }
     }, 3000);
+  }
+
+  private showContent() {
+    if (this.imagesLoaded()) {
+      return;
+    }
+
+    this.imagesLoaded.set(true);
   }
 }

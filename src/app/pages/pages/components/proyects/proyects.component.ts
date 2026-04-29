@@ -1,30 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { Card } from 'primeng/card';
+import { PrimeTemplate } from 'primeng/api';
+import { Button } from 'primeng/button';
+
+interface Project {
+  img: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  url: string;
+}
 
 @Component({
   selector: 'proyects',
   templateUrl: './proyects.component.html',
   styleUrls: ['./proyects.component.scss'],
+  imports: [Card, PrimeTemplate, Button, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProyectsComponent implements OnInit {
-  public proyects: any[] = [];
+export class ProyectsComponent {
+  public proyects = signal<Project[]>([]);
+  private currentLang = 'en';
+  private readonly translate = inject(TranslateService);
 
-  constructor(private translate: TranslateService) {}
-
-  ngOnInit(): void {
+  constructor() {
+    this.currentLang = localStorage.getItem('language') || 'en';
     this.loadProjects();
 
-    // Recargar proyectos cuando cambie el idioma
-    this.translate.onLangChange.subscribe(() => {
-      this.loadProjects();
-    });
+    this.translate.onLangChange
+      .pipe(takeUntilDestroyed())
+      .subscribe((event) => {
+        this.currentLang = event.lang;
+        this.loadProjects();
+      });
   }
 
   private loadProjects(): void {
     const projectsData = this.translate.instant('projects.list');
 
-    this.proyects = [
+    this.proyects.set([
       {
         img: './assets/proyects/Net.jpg',
         title: projectsData[0].title,
@@ -65,7 +86,7 @@ export class ProyectsComponent implements OnInit {
         title: 'Game of the year',
         subtitle: 'Angular, Firebase',
         description:
-          this.translate.currentLang === 'es'
+          this.currentLang === 'es'
             ? 'Game of the year es un proyecto que está dentro del curso de Angular Avanzado, En este caso practicamos Firebase, realizando una comunicación vía websocket entre los votos y los gráficos con el backend'
             : 'Game of the year is a project within the Advanced Angular course, In this case we practice Firebase, making websocket communication between votes and graphics with the backend',
         url: 'https://gameoftheyear.netlify.app',
@@ -75,11 +96,11 @@ export class ProyectsComponent implements OnInit {
         title: 'Map',
         subtitle: 'Angular',
         description:
-          this.translate.currentLang === 'es'
+          this.currentLang === 'es'
             ? 'Proyecto de Práctica para la implementación de Mapbox, esta pequeña pero poderosa app, es capaz de encontrar, marcar y trazar una ruta entre dos puntos, es una librería desarrollada en JS, usada en Typescript'
             : 'Practice project for the implementation of Mapbox, this small but powerful app, is able to find, mark and trace a route between two points, it is a library developed in JS, used in Typescript',
         url: 'https://angularmapbox.netlify.app',
       },
-    ];
+    ]);
   }
 }

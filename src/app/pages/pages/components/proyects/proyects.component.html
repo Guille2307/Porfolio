@@ -1,25 +1,29 @@
-<div class="grid">
-  <div class="col-12">
-    <h1 class="text-center mt-8 text-6xl text-gray-700">{{ 'projects.title' | translate }}</h1>
-  </div>
-</div>
-
-<section class="my-8">
+<section>
   <div class="grid">
-    <div class="col-12 md:col-6 grow" *ngFor="let proyect of proyects">
-      <p-card [header]="proyect.title" [subheader]="proyect.subtitle">
-        <ng-template pTemplate="header">
-          <img [alt]="proyect.title" [src]="proyect.img" />
-        </ng-template>
-        <p>
-          {{ proyect.description }}
-        </p>
-        <ng-template pTemplate="footer">
-          <a [href]="proyect.url" target="_blank">
-            <p-button [label]="'projects.viewMore' | translate" icon="pi pi-desktop"></p-button>
-          </a>
-        </ng-template>
-      </p-card>
+    <div class="col-12 text-center text-gray-700 mt-8 p-1 bg-primary border-round-xl">
+      <h1 class="text-6xl">{{ 'projects.title' | translate }}</h1>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="grid projects-grid justify-content-center align-items-stretch mt-4">
+    @for (proyect of proyects(); track proyect.url) {
+      <div class="col-12 md:col-6 project-column">
+        <p-card styleClass="project-card" [header]="proyect.title" [subheader]="proyect.subtitle">
+          <ng-template pTemplate="header">
+            <img [alt]="proyect.title" [src]="proyect.img" />
+          </ng-template>
+          <p>
+            {{ proyect.description }}
+          </p>
+          <ng-template pTemplate="footer">
+            <a [href]="proyect.url" target="_blank">
+              <p-button [label]="'projects.viewMore' | translate" icon="pi pi-desktop"></p-button>
+            </a>
+          </ng-template>
+        </p-card>
+      </div>
+    }
   </div>
 </section>

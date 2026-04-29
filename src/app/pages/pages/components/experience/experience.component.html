@@ -15,7 +15,9 @@
       </p>
       <p class="text-gray-700">{{ 'experience.responsibilities' | translate }}</p>
       <ul class="text-gray-700">
-        <li *ngFor="let task of 'experience.job1.tasks' | translate">{{ task }}</li>
+        @for (task of ('experience.job1.tasks' | translate); track $index) {
+          <li>{{ task }}</li>
+        }
       </ul>
     </p-card>
   </div>
@@ -30,7 +32,9 @@
       </p>
       <p class="text-gray-700">{{ 'experience.responsibilities' | translate }}</p>
       <ul class="text-gray-700">
-        <li *ngFor="let task of 'experience.job2.tasks' | translate">{{ task }}</li>
+        @for (task of ('experience.job2.tasks' | translate); track $index) {
+          <li>{{ task }}</li>
+        }
       </ul>
     </p-card>
   </div>
@@ -46,7 +50,9 @@
       <p class="text-gray-700">{{ 'experience.responsibilitiesWere' | translate }}</p>
 
       <ul class="text-gray-700">
-        <li *ngFor="let task of 'experience.job3.tasks' | translate">{{ task }}</li>
+        @for (task of ('experience.job3.tasks' | translate); track $index) {
+          <li>{{ task }}</li>
+        }
       </ul>
     </p-card>
   </div>
@@ -58,7 +64,9 @@
         <img alt="Card" src="./assets/images/grupoapok_logo.png" />
       </ng-template>
       <ul class="text-gray-700">
-        <li *ngFor="let task of 'experience.job4.tasks' | translate">{{ task }}</li>
+        @for (task of ('experience.job4.tasks' | translate); track $index) {
+          <li>{{ task }}</li>
+        }
       </ul>
     </p-card>
   </div>
