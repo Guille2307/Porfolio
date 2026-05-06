@@ -1,28 +1,83 @@
-# Porfolio
+# Portfolio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+Aplicación de portafolio personal desarrollada con [Angular CLI](https://github.com/angular/angular-cli) versión 21.
 
-## Development server
+## Tecnologías utilizadas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Angular 21** — Framework principal con componentes standalone
+- **PrimeNG 21** — Librería de componentes UI
+- **PrimeFlex** — Utilidades CSS
+- **@ngx-translate** — Internacionalización (i18n) en inglés y español
+- **SweetAlert2** — Notificaciones y alertas
+- **RxJS** — Programación reactiva
+- **HttpClient** — Comunicación HTTP (reemplaza `fetch` nativo)
+- **Vitest** — Test runner moderno (migrado desde Karma)
 
-## Code scaffolding
+## Páginas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+| Ruta       | Descripción                                                                                               |
+| ---------- | --------------------------------------------------------------------------------------------------------- |
+| `/`        | Página principal (home) con secciones de presentación, tecnologías, proyectos, experiencia y credenciales |
+| `/contact` | Página de contacto con formulario reactivo                                                                |
+
+## Características
+
+- Lazy loading en todas las rutas
+- Formulario de contacto con envío via [FormSubmit](https://formsubmit.co/)
+- Soporte multilenguaje (ES / EN) mediante archivos en `src/assets/i18n/`
+- Change detection con `OnPush` en todos los componentes
+- Estado local con Signals de Angular
+
+## Servidor de desarrollo
+
+```bash
+ng serve
+```
+
+Navega a `http://localhost:4200/`. La aplicación se recarga automáticamente al cambiar los archivos fuente.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+ng build
+```
 
-## Running unit tests
+Los artefactos se generan en el directorio `dist/`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Build para GitHub Pages
 
-## Running end-to-end tests
+```bash
+npm run build:github
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Genera el build con `--base-href ./` y copia los archivos a la carpeta `docs/` para el despliegue en GitHub Pages.
 
-## Further help
+## Generar componentes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+ng generate component component-name
+```
 
+## Ejecutar tests unitarios
+
+```bash
+ng test
+```
+
+Ejecuta los tests unitarios con [Vitest](https://vitest.dev/) en modo watch.
+
+```bash
+ng test --watch=false
+```
+
+Ejecuta los tests una sola vez.
+
+```bash
+ng test --coverage
+```
+
+Genera el informe de cobertura en `coverage/porfolio/`.
+
+## Ayuda adicional
+
+Para más información sobre Angular CLI usa `ng help` o consulta la [documentación oficial de Angular CLI](https://angular.dev/tools/cli).
