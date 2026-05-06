@@ -36,13 +36,23 @@ export class ContactComponent {
 
   sendForm(data: FormGroup = this.myForm) {
     if (this.isFormValid()) {
-      this.emailService.emailPost(data);
-      Swal.fire(
-        'Enviado',
-        'Su mensaje ha sido enviado Correctamente',
-        'success',
-      );
-      this.myForm.reset();
+      this.emailService.emailPost(data).subscribe({
+        next: () => {
+          Swal.fire(
+            'Enviado',
+            'Su mensaje ha sido enviado Correctamente',
+            'success',
+          );
+          this.myForm.reset();
+        },
+        error: () => {
+          Swal.fire(
+            'Error',
+            'No se pudo enviar el mensaje, intenta de nuevo',
+            'error',
+          );
+        },
+      });
     } else {
       Swal.fire(
         'Error',
