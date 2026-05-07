@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { of, throwError } from 'rxjs';
 import { vi } from 'vitest';
 
 import { HeaderComponent } from './header.component';
@@ -59,12 +60,9 @@ describe('HeaderComponent', () => {
 
   it('openFile() should call filesService.getFile with English CV when lang is en', async () => {
     const mockBlob = new Blob(['pdf'], { type: 'application/pdf' });
-    const mockResponse = {
-      blob: vi.fn().mockResolvedValue(mockBlob),
-    } as unknown as Response;
     const getFileSpy = vi
       .spyOn(filesService, 'getFile')
-      .mockResolvedValue(mockResponse);
+      .mockReturnValue(of(mockBlob));
     vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:mock-en');
     vi.spyOn(window, 'open').mockImplementation(() => null);
 
@@ -78,12 +76,9 @@ describe('HeaderComponent', () => {
 
   it('openFile() should call filesService.getFile with Spanish CV when lang is es', () => {
     const mockBlob = new Blob(['pdf'], { type: 'application/pdf' });
-    const mockResponse = {
-      blob: vi.fn().mockResolvedValue(mockBlob),
-    } as unknown as Response;
     const getFileSpy = vi
       .spyOn(filesService, 'getFile')
-      .mockResolvedValue(mockResponse);
+      .mockReturnValue(of(mockBlob));
     vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:mock-es');
     vi.spyOn(window, 'open').mockImplementation(() => null);
 
@@ -121,14 +116,13 @@ describe('HeaderComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('openFile() should handle errors via console.error', async () => {
-    vi.spyOn(filesService, 'getFile').mockRejectedValue(
-      new Error('Network error'),
+  it('openFile() should handle errors via console.error', () => {
+    vi.spyOn(filesService, 'getFile').mockReturnValue(
+      throwError(() => new Error('Network error')),
     );
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
     component.openFile();
-    await new Promise((r) => setTimeout(r, 0));
 
     expect(consoleSpy).toHaveBeenCalled();
   });

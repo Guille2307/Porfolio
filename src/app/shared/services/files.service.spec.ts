@@ -1,42 +1,58 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { vi } from 'vitest';
 
 import { FilesService } from './files.service';
 
 describe('FilesService', () => {
   let service: FilesService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [FilesService],
+    });
     service = TestBed.inject(FilesService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    vi.restoreAllMocks();
+    httpMock.verify();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call fetch with the correct URL and GET method', async () => {
-    const mockResponse = { status: 200, ok: true } as Response;
-    const fetchSpy = vi
-      .spyOn(globalThis, 'fetch')
-      .mockResolvedValue(mockResponse);
-
+  it('should call HttpClient.get with the correct URL and blob responseType', () => {
+    const mockBlob = new Blob(['test'], { type: 'application/pdf' });
     const url = './assets/cv.pdf';
-    const result = await service.getFile(url);
 
-    expect(fetchSpy).toHaveBeenCalledWith(url, { method: 'GET' });
-    expect(result).toBe(mockResponse);
+    service.getFile(url).subscribe((result) => {
+      expect(result).toBe(mockBlob);
+    });
+
+    const req = httpMock.expectOne(url);
+    expect(req.request.method).toBe('GET');
+    expect(req.request.responseType).toBe('blob');
+    req.flush(mockBlob);
   });
 
-  it('should return the fetch Promise', async () => {
-    const mockResponse = { status: 200, ok: true } as Response;
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue(mockResponse);
+  it('should return an Observable', () => {
+    const url = './assets/test.pdf';
+    const mockBlob = new Blob(['test'], { type: 'application/pdf' });
 
-    const promise = service.getFile('./assets/test.pdf');
-    expect(promise).toBeInstanceOf(Promise);
+    const observable = service.getFile(url);
+    expect(observable.subscribe).toBeDefined();
+
+    observable.subscribe((result) => {
+      expect(result).toBeInstanceOf(Blob);
+    });
+
+    const req = httpMock.expectOne(url);
+    req.flush(mockBlob);
   });
 });

@@ -50,13 +50,10 @@ export class HeaderComponent {
         ? './assets/Guillermo_Pinate_CV_English.pdf'
         : './assets/Guillermo_Pinate_Cv.pdf';
 
-    this.filesService
-      .getFile(cvFile)
-      .then((response) => response.blob())
-      .then((pdf) => {
-        window.open(URL.createObjectURL(pdf), '_blank');
-      })
-      .catch((err) => console.error(err));
+    this.filesService.getFile(cvFile).subscribe({
+      next: (pdf) => window.open(URL.createObjectURL(pdf), '_blank'),
+      error: (err) => console.error(err),
+    });
   }
 
   private loadMenuItems(): void {
