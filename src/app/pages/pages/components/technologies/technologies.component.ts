@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { PathTechnologies } from '../../interfaces/path-technologies.interface';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -10,7 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TechnologiesComponent {
-  public readonly urls: PathTechnologies[] = [
+  public readonly urls = signal<PathTechnologies[]>([
     {
       path: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg',
       alt: 'Mongo Image',
@@ -135,7 +135,7 @@ export class TechnologiesComponent {
       path: 'https://cdn.worldvectorlogo.com/logos/jira-1.svg',
       alt: 'jira',
     },
-  ];
+  ]);
 
   isExternalUrl(url: string): boolean {
     return url.startsWith('http://') || url.startsWith('https://');

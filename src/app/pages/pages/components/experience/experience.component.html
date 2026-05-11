@@ -5,69 +5,29 @@
 </div>
 
 <div class="grid mt-5 text-gray-700">
-  <div class="col-12">
-    <p-card [header]="'experience.job1.title' | translate" [subheader]="'experience.job1.period' | translate">
-      <ng-template pTemplate="header">
-        <img alt="Card" src="./assets/images/Ibermatica.png" />
-      </ng-template>
-      <p class="text-gray-700">
-        {{ 'experience.job1.description' | translate }}
-      </p>
-      <p class="text-gray-700">{{ 'experience.responsibilities' | translate }}</p>
-      <ul class="text-gray-700">
-        @for (task of ('experience.job1.tasks' | translate); track $index) {
-          <li>{{ task }}</li>
+  @for (job of jobs(); track job.key) {
+    <div class="col-12">
+      <p-card [header]="('experience.' + job.key + '.title') | translate" [subheader]="('experience.' + job.key + '.period') | translate">
+        <ng-template pTemplate="header">
+          <img alt="Card" [src]="job.image" />
+        </ng-template>
+
+        @if (job.hasDescription) {
+          <p class="text-gray-700">
+            {{ ('experience.' + job.key + '.description') | translate }}
+          </p>
         }
-      </ul>
-    </p-card>
-  </div>
 
-  <div class="col-12">
-    <p-card [header]="'experience.job2.title' | translate" [subheader]="'experience.job2.period' | translate">
-      <ng-template pTemplate="header">
-        <img alt="Card" src="./assets/images/grupoapok_logo.png" />
-      </ng-template>
-      <p class="text-gray-700">
-        {{ 'experience.job2.description' | translate }}
-      </p>
-      <p class="text-gray-700">{{ 'experience.responsibilities' | translate }}</p>
-      <ul class="text-gray-700">
-        @for (task of ('experience.job2.tasks' | translate); track $index) {
-          <li>{{ task }}</li>
+        @if (job.responsibilitiesKey) {
+          <p class="text-gray-700">{{ job.responsibilitiesKey | translate }}</p>
         }
-      </ul>
-    </p-card>
-  </div>
 
-  <div class="col-12">
-    <p-card [header]="'experience.job3.title' | translate" [subheader]="'experience.job3.period' | translate">
-      <ng-template pTemplate="header">
-        <img alt="Card" src="./assets/images/woutick_Brand_Symbol.png" />
-      </ng-template>
-      <p class="text-gray-700">
-        {{ 'experience.job3.description' | translate }}
-      </p>
-      <p class="text-gray-700">{{ 'experience.responsibilitiesWere' | translate }}</p>
-
-      <ul class="text-gray-700">
-        @for (task of ('experience.job3.tasks' | translate); track $index) {
-          <li>{{ task }}</li>
-        }
-      </ul>
-    </p-card>
-  </div>
-
-
-  <div class="col-12">
-    <p-card [header]="'experience.job4.title' | translate" [subheader]="'experience.job4.period' | translate">
-      <ng-template pTemplate="header">
-        <img alt="Card" src="./assets/images/grupoapok_logo.png" />
-      </ng-template>
-      <ul class="text-gray-700">
-        @for (task of ('experience.job4.tasks' | translate); track $index) {
-          <li>{{ task }}</li>
-        }
-      </ul>
-    </p-card>
-  </div>
+        <ul class="text-gray-700">
+          @for (task of (('experience.' + job.key + '.tasks') | translate); track $index) {
+            <li>{{ task }}</li>
+          }
+        </ul>
+      </p-card>
+    </div>
+  }
 </div>
