@@ -5,7 +5,13 @@
     "language": "Idioma",
     "cv": "Currículum",
     "spanish": "Español",
-    "english": "English"
+    "english": "English",
+    "submenu": {
+      "experience": "Experiencia",
+      "technologies": "Tecnologías",
+      "projects": "Proyectos",
+      "education": "Formación"
+    }
   },
   "home": {
     "title": "Full stack <span class='text-primary'>MEAN</span> developer.",

@@ -36,8 +36,9 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load 4 menu items on init', () => {
-    expect(component.items().length).toBe(4);
+  it('should load 8 menu items on init', () => {
+    expect(component.items().length).toBe(8);
+    expect(component.items()[0].items).toBeUndefined();
   });
 
   it('changeLanguage() should call translate.use with the given language', () => {
@@ -91,27 +92,41 @@ describe('HeaderComponent', () => {
   it('menu items should reload when language changes', () => {
     translateService.use('es');
     fixture.detectChanges();
-    expect(component.items().length).toBe(4);
+    expect(component.items().length).toBe(8);
     expect(component.items()[0].label).toBeDefined();
+    expect(component.items()[1].label).toBeDefined();
   });
 
   it('language submenu command should call changeLanguage with es', () => {
     const spy = vi.spyOn(component, 'changeLanguage');
-    const langItem = component.items()[2];
+    const langItem = component.items().find(
+      (item) => item.icon === 'pi pi-arrow-right-arrow-left',
+    );
+    if (!langItem) {
+      throw new Error('Language menu item not found');
+    }
     langItem.items![0].command!({} as any);
     expect(spy).toHaveBeenCalledWith('es');
   });
 
   it('language submenu command should call changeLanguage with en', () => {
     const spy = vi.spyOn(component, 'changeLanguage');
-    const langItem = component.items()[2];
+    const langItem = component.items().find(
+      (item) => item.icon === 'pi pi-arrow-right-arrow-left',
+    );
+    if (!langItem) {
+      throw new Error('Language menu item not found');
+    }
     langItem.items![1].command!({} as any);
     expect(spy).toHaveBeenCalledWith('en');
   });
 
   it('cv menu item command should call openFile', () => {
     const spy = vi.spyOn(component, 'openFile').mockImplementation(() => {});
-    const cvItem = component.items()[3];
+    const cvItem = component.items().find((item) => item.icon === 'pi pi-download');
+    if (!cvItem) {
+      throw new Error('CV menu item not found');
+    }
     cvItem.command!({} as any);
     expect(spy).toHaveBeenCalled();
   });

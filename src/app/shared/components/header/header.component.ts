@@ -5,6 +5,7 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { MenuItem, PrimeTemplate } from 'primeng/api';
 import { Menubar } from 'primeng/menubar';
 
@@ -21,8 +22,10 @@ import { FilesService } from '../../services/files.service';
 export class HeaderComponent {
   public items = signal<MenuItem[]>([]);
   private currentLang = 'en';
+  private readonly sectionScrollDelayMs = 120;
   private readonly filesService = inject(FilesService);
   private readonly translate = inject(TranslateService);
+  private readonly router = inject(Router);
 
   constructor() {
     this.translate.setDefaultLang('en');
@@ -56,12 +59,70 @@ export class HeaderComponent {
     });
   }
 
+  public navigateHome(): void {
+    if (this.router.url === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    this.router.navigate(['/']);
+  }
+
+  public navigateToSection(sectionId: string): void {
+    const scrollToTarget = () => {
+      this.scrollToSection(sectionId, 8);
+    };
+
+    if (this.router.url === '/') {
+      scrollToTarget();
+      return;
+    }
+
+    this.router.navigate(['/']).then((navigated) => {
+      if (!navigated) {
+        return;
+      }
+
+      setTimeout(scrollToTarget, this.sectionScrollDelayMs);
+    });
+  }
+
   private loadMenuItems(): void {
     this.items.set([
       {
         label: this.translate.instant('nav.home'),
         icon: 'pi pi-home',
-        routerLink: '/',
+        command: () => {
+          this.navigateHome();
+        },
+      },
+      {
+        label: this.translate.instant('nav.submenu.experience'),
+        icon: 'pi pi-briefcase',
+        command: () => {
+          this.navigateToSection('experience');
+        },
+      },
+      {
+        label: this.translate.instant('nav.submenu.technologies'),
+        icon: 'pi pi-cog',
+        command: () => {
+          this.navigateToSection('technologies');
+        },
+      },
+      {
+        label: this.translate.instant('nav.submenu.projects'),
+        icon: 'pi pi-folder',
+        command: () => {
+          this.navigateToSection('projects');
+        },
+      },
+      {
+        label: this.translate.instant('nav.submenu.education'),
+        icon: 'pi pi-graduation-cap',
+        command: () => {
+          this.navigateToSection('education');
+        },
       },
       {
         label: this.translate.instant('nav.contact'),
@@ -94,5 +155,22 @@ export class HeaderComponent {
         },
       },
     ]);
+  }
+
+  private scrollToSection(sectionId: string, retries: number): void {
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    if (retries <= 0) {
+      return;
+    }
+
+    setTimeout(() => {
+      this.scrollToSection(sectionId, retries - 1);
+    }, this.sectionScrollDelayMs);
   }
 }
