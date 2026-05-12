@@ -99,9 +99,9 @@ describe('HeaderComponent', () => {
 
   it('language submenu command should call changeLanguage with es', () => {
     const spy = vi.spyOn(component, 'changeLanguage');
-    const langItem = component.items().find(
-      (item) => item.icon === 'pi pi-arrow-right-arrow-left',
-    );
+    const langItem = component
+      .items()
+      .find((item) => item.icon === 'pi pi-arrow-right-arrow-left');
     if (!langItem) {
       throw new Error('Language menu item not found');
     }
@@ -111,9 +111,9 @@ describe('HeaderComponent', () => {
 
   it('language submenu command should call changeLanguage with en', () => {
     const spy = vi.spyOn(component, 'changeLanguage');
-    const langItem = component.items().find(
-      (item) => item.icon === 'pi pi-arrow-right-arrow-left',
-    );
+    const langItem = component
+      .items()
+      .find((item) => item.icon === 'pi pi-arrow-right-arrow-left');
     if (!langItem) {
       throw new Error('Language menu item not found');
     }
@@ -123,7 +123,9 @@ describe('HeaderComponent', () => {
 
   it('cv menu item command should call openFile', () => {
     const spy = vi.spyOn(component, 'openFile').mockImplementation(() => {});
-    const cvItem = component.items().find((item) => item.icon === 'pi pi-download');
+    const cvItem = component
+      .items()
+      .find((item) => item.icon === 'pi pi-download');
     if (!cvItem) {
       throw new Error('CV menu item not found');
     }
