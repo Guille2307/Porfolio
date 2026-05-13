@@ -28,6 +28,10 @@ export class TechnologiesComponent {
       alt: 'nodejs Image',
     },
     {
+      path: 'https://www.vectorlogo.zone/logos/github/github-tile.svg',
+      alt: 'GitHub Image',
+    },
+    {
       path: './assets/tecnologias/ionicframework.svg',
       alt: 'ionicframework Image',
     },
