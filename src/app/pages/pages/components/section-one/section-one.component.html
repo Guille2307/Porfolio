@@ -11,16 +11,25 @@
     >
       <div>
         <img
-          src="./assets/images/GuillermoAvatar.jpg"
+          ngSrc="./assets/images/GuillermoAvatar.jpg"
           [alt]="'home.imgAlt' | translate"
-          class="border-circle border-solid border-primary mt-5"
-          style="width: 250px"
+          width="250"
+          height="250"
+          priority
+          class="border-circle border-solid border-primary mt-5 hero-avatar"
         />
       </div>
     </div>
 
     <div class="col-12 flex justify-content-center align-items-center">
-      <img src="./assets/images/fondo.svg" alt="Imagen diseño" class="mt-6" />
+      <img
+        ngSrc="./assets/images/fondo.svg"
+        alt="Imagen diseño"
+        width="600"
+        height="243"
+        class="mt-6"
+        loading="lazy"
+      />
     </div>
   </div>
 </section>

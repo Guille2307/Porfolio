@@ -9,8 +9,13 @@
   <div class="grid flex justify-content-center align-items-center mt-4 technologies-grid">
     @for (url of urls(); track url.path) {
       <div class="col-6 md:col-4 lg:col-3 text-center text-gray-700 mt-4 p-4 grow">
-        <img [src]="url.path" [alt]="url.alt" [width]="isExternalUrl(url.path) ? 60 : 120"
-          [height]="isExternalUrl(url.path) ? 60 : 120" style="object-fit: contain;" />
+        <img
+          [ngSrc]="url.path"
+          [alt]="url.alt"
+          [width]="isExternalUrl(url.path) ? 60 : 120"
+          [height]="isExternalUrl(url.path) ? 60 : 120"
+          style="object-fit: contain;"
+        />
       </div>
     }
   </div>

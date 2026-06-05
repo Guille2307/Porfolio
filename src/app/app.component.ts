@@ -42,8 +42,6 @@ export class AppComponent implements AfterViewInit {
         this.scheduleImageCheck();
       });
 
-    // Si la navegación inicial ya terminó antes de suscribirnos, el loader
-    // no debe quedarse bloqueando la aplicación.
     setTimeout(() => {
       this.scheduleImageCheck();
     }, 500);
@@ -67,7 +65,6 @@ export class AppComponent implements AfterViewInit {
     ) as HTMLImageElement[];
 
     if (images.length === 0) {
-      // Si no hay imágenes, mostrar contenido inmediatamente
       this.showContent();
       return;
     }
@@ -87,7 +84,7 @@ export class AppComponent implements AfterViewInit {
         checkAllLoaded();
       } else {
         img.addEventListener('load', checkAllLoaded);
-        img.addEventListener('error', checkAllLoaded); // También contar errores para no quedarse esperando
+        img.addEventListener('error', checkAllLoaded);
       }
     });
 

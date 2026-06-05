@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  PLATFORM_ID,
   signal,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { MenuItem, PrimeTemplate } from 'primeng/api';
@@ -23,13 +25,17 @@ export class HeaderComponent {
   public items = signal<MenuItem[]>([]);
   private currentLang = 'en';
   private readonly sectionScrollDelayMs = 120;
+  private readonly isBrowser: boolean;
   private readonly filesService = inject(FilesService);
   private readonly translate = inject(TranslateService);
   private readonly router = inject(Router);
 
   constructor() {
-    this.translate.setDefaultLang('en');
-    const savedLang = localStorage.getItem('language') || 'en';
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+    this.translate.setFallbackLang('en');
+    const savedLang = this.isBrowser
+      ? localStorage.getItem('language') || 'en'
+      : 'en';
     this.currentLang = savedLang;
     this.translate.use(savedLang);
     this.loadMenuItems();
@@ -44,10 +50,15 @@ export class HeaderComponent {
 
   public changeLanguage(lang: string): void {
     this.translate.use(lang);
-    localStorage.setItem('language', lang);
+    if (this.isBrowser) {
+      localStorage.setItem('language', lang);
+    }
   }
 
   public openFile(): void {
+    if (!this.isBrowser) {
+      return;
+    }
     const cvFile =
       this.currentLang === 'en'
         ? './assets/Guillermo_Pinate_CV_English.pdf'
@@ -61,7 +72,9 @@ export class HeaderComponent {
 
   public navigateHome(): void {
     if (this.router.url === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (this.isBrowser) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
       return;
     }
 
@@ -158,6 +171,9 @@ export class HeaderComponent {
   }
 
   private scrollToSection(sectionId: string, retries: number): void {
+    if (!this.isBrowser) {
+      return;
+    }
     const section = document.getElementById(sectionId);
 
     if (section) {

@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { PathTechnologies } from '../../interfaces/path-technologies.interface';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+
+import { PathTechnologies } from '../../interfaces/path-technologies.interface';
 
 @Component({
   selector: 'technologies',
   templateUrl: './technologies.component.html',
   styleUrls: ['./technologies.component.scss'],
-  imports: [TranslatePipe],
+  imports: [NgOptimizedImage, TranslatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TechnologiesComponent {

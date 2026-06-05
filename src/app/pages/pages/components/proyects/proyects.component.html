@@ -12,13 +12,20 @@
       <div class="col-12 md:col-6 project-column">
         <p-card styleClass="project-card" [header]="proyect.title" [subheader]="proyect.subtitle">
           <ng-template pTemplate="header">
-            <img [alt]="proyect.title" [src]="proyect.img" />
+            <img
+              [ngSrc]="proyect.img"
+              [alt]="proyect.title"
+              width="500"
+              height="220"
+              loading="lazy"
+              decoding="async"
+            />
           </ng-template>
           <p>
             {{ proyect.description }}
           </p>
           <ng-template pTemplate="footer">
-            <a [href]="proyect.url" target="_blank">
+            <a [href]="proyect.url" target="_blank" rel="noopener">
               <p-button [label]="'projects.viewMore' | translate" icon="pi pi-desktop"></p-button>
             </a>
           </ng-template>

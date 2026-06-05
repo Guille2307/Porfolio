@@ -2,9 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  PLATFORM_ID,
   signal,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { Card } from 'primeng/card';
 import { PrimeTemplate } from 'primeng/api';
@@ -22,16 +25,20 @@ interface Project {
   selector: 'proyects',
   templateUrl: './proyects.component.html',
   styleUrls: ['./proyects.component.scss'],
-  imports: [Card, PrimeTemplate, Button, TranslatePipe],
+  imports: [Card, PrimeTemplate, Button, TranslatePipe, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProyectsComponent {
   public proyects = signal<Project[]>([]);
   private currentLang = 'en';
+  private readonly isBrowser: boolean;
   private readonly translate = inject(TranslateService);
 
   constructor() {
-    this.currentLang = localStorage.getItem('language') || 'en';
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+    this.currentLang = this.isBrowser
+      ? localStorage.getItem('language') || 'en'
+      : 'en';
     this.loadProjects();
 
     this.translate.onLangChange

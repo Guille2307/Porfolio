@@ -1,14 +1,34 @@
 <section-one></section-one>
 <section-two></section-two>
-<section id="experience">
-	<experience></experience>
-</section>
-<section id="technologies">
-	<technologies></technologies>
-</section>
-<section id="projects">
-	<proyects></proyects>
-</section>
-<section id="education">
-	<credentials></credentials>
-</section>
+
+@defer (on idle) {
+  <section id="experience">
+    <experience></experience>
+  </section>
+} @placeholder (minimum 100ms) {
+  <div class="section-placeholder" style="min-height: 200px"></div>
+}
+
+@defer (on idle) {
+  <section id="technologies">
+    <technologies></technologies>
+  </section>
+} @placeholder (minimum 100ms) {
+  <div class="section-placeholder" style="min-height: 200px"></div>
+}
+
+@defer (on idle) {
+  <section id="projects">
+    <proyects></proyects>
+  </section>
+} @placeholder (minimum 100ms) {
+  <div class="section-placeholder" style="min-height: 200px"></div>
+}
+
+@defer (on idle) {
+  <section id="education">
+    <credentials></credentials>
+  </section>
+} @placeholder (minimum 100ms) {
+  <div class="section-placeholder" style="min-height: 200px"></div>
+}
