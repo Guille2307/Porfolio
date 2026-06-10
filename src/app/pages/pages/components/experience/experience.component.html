@@ -9,7 +9,7 @@
     <div class="col-12">
       <p-card [header]="('experience.' + job.key + '.title') | translate" [subheader]="('experience.' + job.key + '.period') | translate">
         <ng-template pTemplate="header">
-          <img alt="Card" [src]="job.image" />
+          <img [alt]="job.imageAlt" [src]="job.image" />
         </ng-template>
 
         @if (job.hasDescription) {

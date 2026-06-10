@@ -110,9 +110,14 @@
         "description": "As part of my self-training, and in pursuit of constant improvement, I took the Advanced Angular course, AdminPro is a web that I developed throughout the course, authentication, CRUD of doctors and hospitals"
       },
       {
-        "title": "Pipes App",
+        "title": "Game of the year",
+        "subtitle": "Angular, Firebase",
+        "description": "Game of the year is a project within the Advanced Angular course. In this case we practice Firebase, making websocket communication between votes and graphics with the backend."
+      },
+      {
+        "title": "Map",
         "subtitle": "Angular",
-        "description": "Pipes app is a project that I developed in order to strengthen knowledge about Pipes in Angular. Angular Material concepts are also applied for a more interactive design"
+        "description": "Practice project for the implementation of Mapbox, this small but powerful app is able to find, mark and trace a route between two points. It is a library developed in JS, used in TypeScript."
       }
     ]
   },

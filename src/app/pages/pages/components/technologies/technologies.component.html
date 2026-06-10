@@ -7,13 +7,13 @@
 </section>
 <section>
   <div class="grid flex justify-content-center align-items-center mt-4 technologies-grid">
-    @for (url of urls(); track url.path) {
+    @for (url of urlsWithSize(); track url.path) {
       <div class="col-6 md:col-4 lg:col-3 text-center text-gray-700 mt-4 p-4 grow">
         <img
           [ngSrc]="url.path"
           [alt]="url.alt"
-          [width]="isExternalUrl(url.path) ? 60 : 120"
-          [height]="isExternalUrl(url.path) ? 60 : 120"
+          [width]="url.size"
+          [height]="url.size"
           style="object-fit: contain;"
         />
       </div>

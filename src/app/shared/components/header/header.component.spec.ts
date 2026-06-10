@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, PLATFORM_ID } from '@angular/core';
 import { provideRouter, Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';
@@ -299,5 +299,46 @@ describe('HeaderComponent', () => {
     component.openFile();
 
     expect(consoleSpy).toHaveBeenCalled();
+  });
+});
+
+describe('HeaderComponent — SSR (non-browser environment)', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
+
+  beforeEach(async () => {
+    vi.spyOn(Storage.prototype, 'getItem').mockReturnValue('en');
+
+    await TestBed.configureTestingModule({
+      imports: [HeaderComponent, TranslateModule.forRoot()],
+      providers: [
+        provideRouter([]),
+        { provide: PLATFORM_ID, useValue: 'server' },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  afterEach(() => vi.restoreAllMocks());
+
+  it('openFile() should return early without calling filesService when not in browser', () => {
+    const filesService = TestBed.inject(FilesService);
+    const spy = vi.spyOn(filesService, 'getFile');
+
+    component.openFile();
+
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('scrollToSection() should return early without querying DOM when not in browser', () => {
+    const getElementSpy = vi.spyOn(document, 'getElementById');
+
+    (component as any).scrollToSection('experience', 3);
+
+    expect(getElementSpy).not.toHaveBeenCalled();
   });
 });

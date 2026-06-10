@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -143,7 +143,10 @@ export class TechnologiesComponent {
     },
   ]);
 
-  isExternalUrl(url: string): boolean {
-    return url.startsWith('http://') || url.startsWith('https://');
-  }
+  readonly urlsWithSize = computed(() =>
+    this.urls().map((url) => ({
+      ...url,
+      size: url.path.startsWith('http') ? 60 : 120,
+    })),
+  );
 }

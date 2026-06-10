@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
   PLATFORM_ID,
   signal,
@@ -26,6 +27,7 @@ export class HeaderComponent {
   private currentLang = 'en';
   private readonly sectionScrollDelayMs = 120;
   private readonly isBrowser: boolean;
+  private readonly destroyRef = inject(DestroyRef);
   private readonly filesService = inject(FilesService);
   private readonly translate = inject(TranslateService);
   private readonly router = inject(Router);
@@ -64,7 +66,7 @@ export class HeaderComponent {
         ? './assets/Guillermo_Pinate_CV_English.pdf'
         : './assets/Guillermo_Pinate_Cv.pdf';
 
-    this.filesService.getFile(cvFile).subscribe({
+    this.filesService.getFile(cvFile).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (pdf) => window.open(URL.createObjectURL(pdf), '_blank'),
       error: (err) => console.error(err),
     });

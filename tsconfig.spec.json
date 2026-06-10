@@ -3,8 +3,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
-    "types": ["vitest/globals"]
+    "target": "ES2022",
+    "types": ["vitest/globals", "node"]
   },
+  "files": ["src/test-setup.ts"],
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"

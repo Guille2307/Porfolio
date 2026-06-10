@@ -13,6 +13,7 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { ImageLoaderService } from './shared/services/image-loader.service';
 
 @Component({
   selector: 'app-root',
@@ -29,8 +30,9 @@ import { HeaderComponent } from './shared/components/header/header.component';
 })
 export class AppComponent implements AfterViewInit {
   readonly imagesLoaded = signal(false);
-  private imageCheckScheduled = false;
+  private checking = false;
   private readonly router = inject(Router);
+  private readonly imageLoader = inject(ImageLoaderService);
 
   ngAfterViewInit() {
     this.router.events
@@ -38,68 +40,18 @@ export class AppComponent implements AfterViewInit {
         filter((event) => event instanceof NavigationEnd),
         take(1),
       )
-      .subscribe(() => {
-        this.scheduleImageCheck();
-      });
+      .subscribe(() => this.checkImages());
 
-    setTimeout(() => {
-      this.scheduleImageCheck();
-    }, 500);
+    setTimeout(() => this.checkImages(), 500);
   }
 
-  private scheduleImageCheck() {
-    if (this.imageCheckScheduled || this.imagesLoaded()) {
+  private checkImages(): void {
+    if (this.checking || this.imagesLoaded()) {
       return;
     }
-
-    this.imageCheckScheduled = true;
-
-    setTimeout(() => {
-      this.waitForImages();
-    }, 100);
-  }
-
-  private waitForImages() {
-    const images = Array.from(
-      document.querySelectorAll('img'),
-    ) as HTMLImageElement[];
-
-    if (images.length === 0) {
-      this.showContent();
-      return;
-    }
-
-    let loadedCount = 0;
-    const totalImages = images.length;
-
-    const checkAllLoaded = () => {
-      loadedCount++;
-      if (loadedCount >= totalImages) {
-        this.showContent();
-      }
-    };
-
-    images.forEach((img) => {
-      if (img.complete) {
-        checkAllLoaded();
-      } else {
-        img.addEventListener('load', checkAllLoaded);
-        img.addEventListener('error', checkAllLoaded);
-      }
+    this.checking = true;
+    this.imageLoader.waitForImages().then(() => {
+      this.imagesLoaded.set(true);
     });
-
-    setTimeout(() => {
-      if (!this.imagesLoaded()) {
-        this.showContent();
-      }
-    }, 3000);
-  }
-
-  private showContent() {
-    if (this.imagesLoaded()) {
-      return;
-    }
-
-    this.imagesLoaded.set(true);
   }
 }

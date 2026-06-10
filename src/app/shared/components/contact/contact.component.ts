@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
   Validators,
@@ -21,6 +22,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ContactComponent {
   private readonly fb = inject(FormBuilder);
   private readonly emailService = inject(EmailService);
+  private readonly destroyRef = inject(DestroyRef);
 
   public myForm = this.fb.group({
     name: ['', [Validators.required]],
@@ -36,7 +38,7 @@ export class ContactComponent {
 
   sendForm(data: FormGroup = this.myForm) {
     if (this.isFormValid()) {
-      this.emailService.emailPost(data).subscribe({
+      this.emailService.emailPost(data).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: () => {
           Swal.fire(
             'Enviado',

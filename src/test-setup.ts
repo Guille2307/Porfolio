@@ -1,4 +1,9 @@
+import '@analogjs/vitest-angular/setup-snapshots';
+import '@analogjs/vitest-angular/setup-serializers';
+import { setupTestBed } from '@analogjs/vitest-angular/setup-testbed';
 import { vi } from 'vitest';
+
+setupTestBed(); // zoneless: true by default — matches provideZonelessChangeDetection() in app
 
 // Mock window.matchMedia not available in jsdom
 Object.defineProperty(window, 'matchMedia', {

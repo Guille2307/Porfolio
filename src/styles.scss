@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 /* Global styles */
 body {
   font-family: Lato, Helvetica, sans-serif;
@@ -11,8 +13,4 @@ body {
   @media (max-width: 490px) {
     width: 90%;
   }
-}
-
-* {
-  user-select: none;
 }
