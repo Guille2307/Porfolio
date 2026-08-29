@@ -30,6 +30,10 @@ export class TechnologiesComponent {
       alt: 'nodejs Image',
     },
     {
+      path: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/nestjs/nestjs-original.svg',
+      alt: 'nestjs Image',
+    },
+    {
       path: 'https://www.vectorlogo.zone/logos/github/github-tile.svg',
       alt: 'GitHub Image',
     },
