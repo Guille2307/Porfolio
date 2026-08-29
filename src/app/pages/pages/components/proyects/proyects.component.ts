@@ -45,7 +45,7 @@ export class ProyectsComponent {
       'https://adminprogp.netlify.app',
       'https://gameoftheyear.netlify.app',
       'https://angularmapbox.netlify.app',
-      'https://github.com/Guille2307/tpv',
+      'https://tpvinterfilm.netlify.app/login',
     ];
     const images = [
       './assets/proyects/Net.jpg',
